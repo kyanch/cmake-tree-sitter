@@ -1,0 +1,6 @@
+[submodule "impl/cpp"]
+	path = impl/cpp
+	url = https://github.com/tree-sitter/tree-sitter-cpp
+[submodule "impl/c"]
+	path = impl/c
+	url = https://github.com/tree-sitter/tree-sitter-c
