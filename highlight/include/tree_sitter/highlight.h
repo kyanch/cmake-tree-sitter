@@ -7,6 +7,27 @@ extern "C" {
 
 #include <stdint.h>
 
+const char *default_highlight_names[] = {
+    "attribute",
+    "constant",
+    "function.builtin",
+    "function",
+    "keyword",
+    "operator",
+    "property",
+    "punctuation",
+    "punctuation.bracket",
+    "punctuation.delimiter",
+    "string",
+    "string.special",
+    "tag",
+    "type",
+    "type.builtin",
+    "variable",
+    "variable.builtin",
+    "variable.parameter",
+};
+
 typedef enum {
   TSHighlightOk,
   TSHighlightUnknownScope,
@@ -22,11 +43,9 @@ typedef struct TSHighlightBuffer TSHighlightBuffer;
 
 // Construct a `TSHighlighter` by providing a list of strings containing
 // the HTML attributes that should be applied for each highlight value.
-TSHighlighter *ts_highlighter_new(
-  const char **highlight_names,
-  const char **attribute_strings,
-  uint32_t highlight_count
-);
+TSHighlighter *ts_highlighter_new(const char **highlight_names,
+                                  const char **attribute_strings,
+                                  uint32_t highlight_count);
 
 // Delete a syntax highlighter.
 void ts_highlighter_delete(TSHighlighter *);
@@ -53,14 +72,12 @@ TSHighlightError ts_highlighter_add_language(
 
 // Compute syntax highlighting for a given document. You must first
 // create a `TSHighlightBuffer` to hold the output.
-TSHighlightError ts_highlighter_highlight(
-  const TSHighlighter *self,
-  const char *scope_name,
-  const char *source_code,
-  uint32_t source_code_len,
-  TSHighlightBuffer *output,
-  const size_t *cancellation_flag
-);
+TSHighlightError ts_highlighter_highlight(const TSHighlighter *self,
+                                          const char *scope_name,
+                                          const char *source_code,
+                                          uint32_t source_code_len,
+                                          TSHighlightBuffer *output,
+                                          const size_t *cancellation_flag);
 
 // TSHighlightBuffer: This struct stores the HTML output of syntax
 // highlighting. It can be reused for multiple highlighting calls.
@@ -79,4 +96,4 @@ uint32_t ts_highlight_buffer_line_count(const TSHighlightBuffer *);
 }
 #endif
 
-#endif  // TREE_SITTER_HIGHLIGHT_H_
+#endif // TREE_SITTER_HIGHLIGHT_H_
