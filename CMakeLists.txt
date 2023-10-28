@@ -14,8 +14,7 @@ include(CMakeCargo)
 
 set(_TS_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/lib/src ${CMAKE_CURRENT_SOURCE_DIR}/lib/include)
 add_library(tree-sitter STATIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/src/lib.c)
-# target_include_directories(tree-sitter PUBLIC ${_TS_HEADER})
-target_include_directories(tree-sitter PUBLIC lib/src lib/include)
+target_include_directories(tree-sitter PUBLIC ${_TS_HEADER})
 
 # tree-sitter highlight lib
 cargo_build( NAME tree-sitter-highlight 

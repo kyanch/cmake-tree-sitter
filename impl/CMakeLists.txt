@@ -22,7 +22,7 @@ function(query_to_header)
 endfunction(query_to_header)
 
 # 生成query到c_query.h
-file(GLOB _QUERY_FILES c/queries/*.scm OUTPUT_DIR)
+file(GLOB _QUERY_FILES ${CMAKE_CURRENT_SOURCE_DIR}c/queries/*.scm OUTPUT_DIR)
 query_to_header(FILES ${_QUERY_FILES}
  OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/c/src/tree_sitter
  OUTPUT_NAME c_query.h)
@@ -34,7 +34,7 @@ target_include_directories(tree-sitter-c PUBLIC ${_TSC_HEADER})
 
 
 # 生成query到c_query.h
-file(GLOB _QUERY_FILES cpp/queries/*.scm OUTPUT_DIR)
+file(GLOB _QUERY_FILES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/queries/*.scm OUTPUT_DIR)
 query_to_header(FILES ${_QUERY_FILES}
  OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/cpp/src/tree_sitter
  OUTPUT_NAME cxx_query.h)
