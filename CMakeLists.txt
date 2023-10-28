@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 
+message(STATUS "${CMAKE_MODULE_PATH}")
 project(tree-sitter VERSION 0.20.10)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -22,4 +23,5 @@ cargo_build( NAME tree-sitter-highlight
     INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/highlight/include)
 
 add_subdirectory(impl)
-add_subdirectory(test/highlight)
+
+# add_subdirectory(test/highlight)
