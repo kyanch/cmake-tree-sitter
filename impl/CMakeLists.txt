@@ -22,12 +22,12 @@ function(query_to_header)
 endfunction(query_to_header)
 
 # 生成query到c_query.h
-file(GLOB _QUERY_FILES ${CMAKE_CURRENT_SOURCE_DIR}c/queries/*.scm OUTPUT_DIR)
+file(GLOB _QUERY_FILES ${CMAKE_CURRENT_SOURCE_DIR}/c/queries/*.scm OUTPUT_DIR)
 query_to_header(FILES ${_QUERY_FILES}
- OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/c/src/tree_sitter
+ OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/inlcude/tree_sitter
  OUTPUT_NAME c_query.h)
 # tree-sitter c implement
-set(_TSC_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/c/src)
+set(_TSC_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/c/src ${CMAKE_CURRENT_BINARY_DIR}/include)
 file(GLOB _TSC_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/c/src/*.c)
 add_library(tree-sitter-c STATIC ${_TSC_SOURCES})
 target_include_directories(tree-sitter-c PUBLIC ${_TSC_HEADER})
@@ -36,10 +36,10 @@ target_include_directories(tree-sitter-c PUBLIC ${_TSC_HEADER})
 # 生成query到c_query.h
 file(GLOB _QUERY_FILES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/queries/*.scm OUTPUT_DIR)
 query_to_header(FILES ${_QUERY_FILES}
- OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/cpp/src/tree_sitter
+ OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/inlcude/tree_sitter
  OUTPUT_NAME cxx_query.h)
 # tree-sitter cxx implement
-set(_TSCXX_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/cpp/src)
+set(_TSCXX_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/cpp/src ${CMAKE_CURRENT_SOURCE_DIR}/include)
 file(GLOB _TSCXX_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/src/*.c)
 add_library(tree-sitter-cxx STATIC ${_TSCXX_SOURCES})
 target_include_directories(tree-sitter-cxx PUBLIC ${_TSCXX_HEADER})
