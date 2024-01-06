@@ -7,26 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 
-const char *default_highlight_names[] = {
-    "attribute",
-    "constant",
-    "function.builtin",
-    "function",
-    "keyword",
-    "operator",
-    "property",
-    "punctuation",
-    "punctuation.bracket",
-    "punctuation.delimiter",
-    "string",
-    "string.special",
-    "tag",
-    "type",
-    "type.builtin",
-    "variable",
-    "variable.builtin",
-    "variable.parameter",
-};
+typedef struct TSLanguage TSLanguage;
 
 typedef enum {
   TSHighlightOk,
